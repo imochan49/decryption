@@ -1,0 +1,27 @@
+from Crypto.Cipher import AES
+import base64
+
+# 復号化に使用するパスワードと初期化ベクトル（IV）
+# passwordを入力してプログラミングを完成させてください
+password = b""
+iv = b"benkyoshimashita"
+
+# 暗号化されたテキスト
+encrypted_text = "hibXBF0xCb1kcY7IUDh5/E2cmTKh0o4vdT9wSzUKED0uH2upV76WoXzHLmcgd0qSA1wY7wttfrfWszw+CDQJxdTCRTkD+Xe+xuys6NzbmkH6nzDW8u11fpGIzs2mGM1W"
+
+def decrypt(password, encdata, iv):
+    # Base64デコード
+    encdata = base64.b64decode(encdata)
+
+    # AESデコード
+    cipher = AES.new(password, AES.MODE_CBC, iv)
+    decrypted_data = cipher.decrypt(encdata)
+
+    # 復号化されたデータをUTF-8でデコードして返す
+    return decrypted_data.decode('utf-8')
+
+
+# 復号化して結果を表示
+decrypted_text = decrypt(password, encrypted_text, iv)
+print("復号化されたテキスト:", decrypted_text)
+print("上記のURLを開いてください")
